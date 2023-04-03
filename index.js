@@ -1,21 +1,24 @@
 ////////
 
 async function CoindSound() {
-  var audio = new Audio('Music/scale.mp3');
+  let audio = new Audio('Music/scale.mp3');
+  audio.play()
+}
+
+async function GameOverMusic() {
+  let audio = new Audio('Music/GameO.mp3');
   audio.play()
 }
 
 
-var audio = new Audio('Music/Wallpaper.mp3');
 
 
-
+let audioBackground = new Audio('Music/Wallpaper.mp3');
 async function PlayMusic() {
-  audio.play();
-  audio.addEventListener('ended', function () {
-    audio.currentTime = 0;
-    audio.play();
-    
+  audioBackground.play();
+  audioBackground.addEventListener('ended', function () {
+    audioBackground.currentTime = 0;
+    audioBackground.play();
   });
 
 
@@ -39,11 +42,11 @@ const scaledCanvas = {
   height: canvas.height / 2,
 }
 
-const CoinCollisions2D = []
-for (let index = 0; index < CoinCollisions.length; index += 63) {
-  CoinCollisions2D.push(CoinCollisions.slice(index, index + 63))
+// const CoinCollisions2D = []
+// for (let index = 0; index < CoinCollisions.length; index += 63) {
+//   CoinCollisions2D.push(CoinCollisions.slice(index, index + 63))
 
-}
+// }
 
 
 const floorCollisions2D = []
@@ -357,7 +360,7 @@ const backgroundImageHeight = 700
 var ISGlobal = true;
 var ISGlobal2 = true;
 function animate() {
-  window.requestAnimationFrame(animate)
+  var requestId = requestAnimationFrame(animate);
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -456,12 +459,14 @@ function animate() {
     Player2Key()
   }
   else if (!player.iskill || !player2.iskill) {
-    keys.w.pressed = true
-    keys.ArrowUp.pressed = true;
+    cancelAnimationFrame(requestId);
     GameOver();
     clearInterval(intervalId);
-
+    keys.w.pressed = true
+    keys.ArrowUp.pressed = true;
+    return
   }
+  
 
 
   c.restore()
@@ -610,9 +615,13 @@ function Section_Clock() {
 }
 
 function GameOver() {
-  let Wik = document.getElementById('Wik')
-  Wik.innerHTML = "GAME OVER"
-  modal.style.display = "flex"
+  GameOverMusic()
+  setTimeout(() => {
+    let Wik = document.getElementById('Wik')
+    Wik.innerHTML = "GAME OVER"
+    modal.style.display = "flex"
+    audioBackground.pause()
+  }, 1000);
 }
 function Minute_Clock() {
   if (Minute.toString().length > 1) {
