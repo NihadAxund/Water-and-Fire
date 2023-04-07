@@ -21,10 +21,12 @@ async function PlayMusic() {
     audioBackground.play();
   });
 
-
 }
 
-PlayMusic()
+setTimeout(() => {
+  alert("a")
+  PlayMusic()
+}, 1000);
 
 /////////
 
