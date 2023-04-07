@@ -58,16 +58,16 @@ class Player2 extends Sprite {
     this.frameRate = this.animations[key].frameRate
   }
 
-  updateCamerabox() {
-    this.camerabox = {
-      position: {
-        x: this.position.x - 50,
-        y: this.position.y - 20,
-      },
-      width: 150,
-      height: 150,
-    }
-  }
+  // updateCamerabox() {
+  //   this.camerabox = {
+  //     position: {
+  //       x: this.position.x - 50,
+  //       y: this.position.y - 20,
+  //     },
+  //     width: 150,
+  //     height: 150,
+  //   }
+  // }
 
   checkForHorizontalCanvasCollision() {
     if (
@@ -82,12 +82,9 @@ class Player2 extends Sprite {
     this.updateFrames()
     this.updateHitbox()
 
-    this.updateCamerabox()
+    //this.updateCamerabox()
     this.draw()
-
     this.position.x += this.velocity.x
-
-
     this.updateHitbox()
     this.checkForHorizontalCollisions()
     this.checkForHorizontalCoin()

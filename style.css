@@ -6,7 +6,6 @@
 .modal {
     display: none;
     position: fixed;
-    
     z-index: 1;
     left: 0;
     top: 0;
@@ -22,15 +21,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 /* Modal Content */
 .modal-content {
     background-image: url('Menu/MenuBack.png');
-    background-size:100% 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -39,18 +36,75 @@
     overflow: hidden;
 }
 
+.Score1 {
+    width: 600px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.Score1>.sec-1 {
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    color: white;
+    align-items: center;
+    height: 100%;
+    font-size: 2.5em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.Score1>.sec-3 {
+    width: 40%;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.sec-3>p {
+    margin-left: 16%;
+    font-size: 1.9em;
+    font-family: fantasy;
+}
+
+.Score1>.sec-2 {
+    width: 20%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    margin: auto;
+    text-align: center;
+}
+
+.Score1>.sec-2>p {
+    font-size: 70px;
+    font-family: fantasy;
+}
+
+
 .Red_D {
     width: 500px;
     height: 100px;
     display: flex;
+
     justify-content: space-around;
     align-items: center;
 }
-.Red_D>img{
+
+.Red_D>img {
     width: 100px;
     height: 80px;
 }
-.Red_D>p{
+
+.Red_D>p {
     font-size: 70px;
     font-family: fantasy;
     color: red;
@@ -64,22 +118,22 @@
     height: 100px;
 }
 
-.Blue_D > img{
+.Blue_D>img {
     width: 100px;
     height: 80px;
 }
 
-.Blue_D>p{
+.Blue_D>p {
     font-size: 70px;
     font-family: fantasy;
     color: rgb(0, 30, 255);
 }
 
-#Wik{
+#Wik {
     margin-top: 50px;
     font-size: 100px;
     color: gold;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* The Close Button */
@@ -122,7 +176,7 @@ body {
 
 }
 
-.Abstract{
+.Abstract {
     width: 250px;
     height: 100px;
     position: absolute;
@@ -134,7 +188,7 @@ body {
     justify-content: center;
 }
 
-.Clock{
+.Clock {
 
     width: 135px;
     margin-left: 15px;
@@ -157,4 +211,3 @@ body {
     justify-content: center;
     align-items: center;
 }
-

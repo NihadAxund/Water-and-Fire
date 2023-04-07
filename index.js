@@ -5,6 +5,7 @@ async function CoindSound() {
   audio.play()
 }
 
+
 async function GameOverMusic() {
   let audio = new Audio('Music/GameO.mp3');
   audio.play()
@@ -23,14 +24,25 @@ async function PlayMusic() {
 
 }
 
+function ModalCon() {
+
+  let data = document.cookie.split(";")
+  if (data.length < 4) {
+    cookies = 0
+  }
+  else {
+    cookies = data.pop().trim();
+  }
+  let value = document.querySelector("#Sec-3-p")
+  value.innerHTML = cookies;
+}
+
+
 setTimeout(() => {
-  alert("a")
   PlayMusic()
 }, 1000);
-
 /////////
-
-
+var cookies;
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 var modal = document.getElementById("myModal");
@@ -39,6 +51,7 @@ var BlueCoinCount = 0
 canvas.width = 1450
 canvas.height = 900
 
+ModalCon()
 const scaledCanvas = {
   width: canvas.width / 2,
   height: canvas.height / 2,
@@ -70,7 +83,7 @@ var LiftColBats = []
 
 var player = new Player({
   position: {
-    x: 100,
+    x: 50,
     y: 800,
   },
   collisionBlocks,
@@ -132,7 +145,7 @@ var player = new Player({
 
 var player2 = new Player2({
   position: {
-    x: 100,
+    x: 50,
     y: 700,
   },
   collisionBlocks,
@@ -414,17 +427,20 @@ function animate() {
 
   if (player.isWin && player2.isWin) {
 
+    High_Score();
     keys.w.pressed = true
     keys.ArrowUp.pressed = true;
     player.switchSprite("Idle")
     player2.switchSprite("Idle")
-    modal.style.display = "block";
+    modal.style.display = "flex";
     let RedC = document.getElementById('RedC');
     RedC.innerHTML = `3/${RedCoinCount}`
     let BlueC = document.getElementById('BlueC');
-
     BlueC.innerHTML = `3/${BlueCoinCount}`
+
     clearInterval(intervalId);
+    cancelAnimationFrame(requestId);
+
     return
   }
   else if (player.iskill && player2.iskill) {
@@ -434,27 +450,20 @@ function animate() {
       player.switchSprite('Run')
       player.velocity.x = 3
       player.lastDirection = 'right'
-      //  player.shouldPanCameraToTheLeft({ canvas})
     }
-    // else if (keys.w.pressed){
-    //   keys.w.pressed = false;
-    // } 
     else if (keys.a.pressed) {
       player.switchSprite('RunLeft')
       player.velocity.x = -3
       player.lastDirection = 'left'
-      // player.shouldPanCameraToTheRight({ canvas})
     } else if (player.velocity.y == 0) {
       if (player.lastDirection == 'right') player.switchSprite('Idle')
       else player.switchSprite('IdleLeft')
     }
 
     if (player.velocity.y < 0) {
-      //player.shouldPanCameraDown({ camera, canvas })
       if (player.lastDirection == 'right') player.switchSprite('Jump')
       else player.switchSprite('JumpLeft')
     } else if (player.velocity.y > 0) {
-      //player.shouldPanCameraUp({ camera, canvas })
       if (player.lastDirection == 'right') player.switchSprite('Fall')
       else player.switchSprite('FallLeft')
     }
@@ -468,7 +477,7 @@ function animate() {
     keys.ArrowUp.pressed = true;
     return
   }
-  
+
 
 
   c.restore()
@@ -477,6 +486,19 @@ function animate() {
 
 animate()
 
+
+
+function High_Score() {
+  Score = 5000 - Score
+  if (cookies == 0) {
+    document.cookie = Score;
+    ModalCon()
+  }
+  else if (cookies != null && cookies < Score) {
+    document.cookie = Score;
+    ModalCon()
+  }
+}
 
 function Player2Key() {
 
@@ -589,6 +611,7 @@ var btn = document.getElementById("myBtn");
 var MIN_SEC = document.getElementById("Sec_Min");
 let Section = 0;
 let Minute = 0;
+var Score = 0;
 
 var intervalId = setInterval(() => {
   Section_Clock()
@@ -601,9 +624,9 @@ function Section_Clock() {
   // console.log(Section.length)
   if (Section.toString().length > 1) {
     if (Section > 59) {
-      Section = 0
       Minute++
       Min = Minute_Clock()
+      Section = 0
       MIN_SEC.innerHTML = `${Min}:${Section}`
     }
     else {
@@ -614,6 +637,7 @@ function Section_Clock() {
     MIN_SEC.innerHTML = `${Min}:0${Section}`
   }
   Section++;
+  Score++;
 }
 
 function GameOver() {
@@ -627,9 +651,13 @@ function GameOver() {
 }
 function Minute_Clock() {
   if (Minute.toString().length > 1) {
+    Score += 60
+    Score -= Section
     return Minute.toString()
   }
   else {
+    Score += 60
+    Score -= Section
     return `0${Minute}`
   }
 }
