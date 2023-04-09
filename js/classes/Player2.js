@@ -360,7 +360,7 @@ class Player2 extends Sprite {
       ) {
         if (this.velocity.x > 0) {
           CoindSound()
-           this.velocity.x = 0
+          this.velocity.x = 0
 
           // const offset =
           //   this.hitbox.position.x - this.position.x + this.hitbox.width
@@ -586,7 +586,6 @@ class Player2 extends Sprite {
         }
       }
     }
-
   }
 
 
@@ -606,10 +605,7 @@ class Player2 extends Sprite {
       ) {
         if (this.velocity.x > 0) {
           this.velocity.x = 0
-
-          const offset =
-            this.hitbox.position.x - this.position.x + this.hitbox.width
-
+          const offset = this.hitbox.position.x - this.position.x + this.hitbox.width
           this.position.x = collisionBlock.position.x - offset - 0.01
           break
         }
@@ -642,9 +638,7 @@ class Player2 extends Sprite {
           this.velocity.x = 0
           this.CheckBat = true;
           coinBlock.LiftCheck(true);
-          const offset =
-            this.hitbox.position.x - this.position.x + this.hitbox.width
-
+          const offset = this.hitbox.position.x - this.position.x + this.hitbox.width
           //this.position.x = coinBlock.position.x - offset - 0.01
           //alert("a")
           //alert("b");
