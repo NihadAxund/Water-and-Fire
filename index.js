@@ -437,7 +437,6 @@ function animate() {
     RedC.innerHTML = `3/${RedCoinCount}`
     let BlueC = document.getElementById('BlueC');
     BlueC.innerHTML = `3/${BlueCoinCount}`
-
     clearInterval(intervalId);
     cancelAnimationFrame(requestId);
 
@@ -477,11 +476,7 @@ function animate() {
     keys.ArrowUp.pressed = true;
     return
   }
-
-
-
   c.restore()
-
 }
 
 animate()
