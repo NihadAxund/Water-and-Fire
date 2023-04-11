@@ -677,17 +677,12 @@ class Player2 extends Sprite {
 
         if (this.velocity.y > 0) {
           this.velocity.y = 0
-
           this.CheckBat = true;
           collisionBlock.LiftCheck(true);
-          const offset =
-            this.hitbox.position.y - this.position.y + this.hitbox.height
-
+          const offset = this.hitbox.position.y - this.position.y + this.hitbox.height
           this.position.y = collisionBlock.position.y - offset - 0.01
           break
         }
-
-
         // if (this.velocity.y < 0) {
         //   this.velocity.y = 0
 
